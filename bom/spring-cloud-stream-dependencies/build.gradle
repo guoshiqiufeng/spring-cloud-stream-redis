@@ -14,8 +14,8 @@ description = "Spring Cloud Stream Dependencies"
 
 dependencyManagement {
     dependencies {
-        dependency "io.github.guoshiqiufeng:spring-cloud-stream-binder-redis-core:${APP_VERSION}"
-        dependency "io.github.guoshiqiufeng:spring-cloud-stream-binder-redis:${APP_VERSION}"
-        dependency "io.github.guoshiqiufeng:spring-cloud-starter-stream-redis:${APP_VERSION}"
+        dependency "${APP_GROUP}:spring-cloud-stream-binder-redis-core:${APP_VERSION}"
+        dependency "${APP_GROUP}:spring-cloud-stream-binder-redis:${APP_VERSION}"
+        dependency "${APP_GROUP}:spring-cloud-starter-stream-redis:${APP_VERSION}"
     }
 }

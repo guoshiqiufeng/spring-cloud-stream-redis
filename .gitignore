@@ -41,3 +41,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+node_modules/**
+/docs/.vuepress/.cache/
+/docs/.vuepress/.temp/

@@ -163,6 +163,7 @@ subprojects {
                 }
                 pom {
                     name = artifactId
+                    description = 'spring cloud stream redis realization'
                     if (onlyPom) {
                         packaging 'pom'
                     } else {
