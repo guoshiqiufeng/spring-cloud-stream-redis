@@ -1,0 +1,5 @@
+dependencies {
+    api project(":binders:spring-cloud-stream-binder-redis")
+
+    api 'io.lettuce:lettuce-core'
+}

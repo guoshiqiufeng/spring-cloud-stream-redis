@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor:\
+io.github.guoshiqiufeng.cloud.stream.binder.redis.common.RedisBinderEnvironmentPostProcessor

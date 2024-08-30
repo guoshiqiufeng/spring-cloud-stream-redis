@@ -1,0 +1,13 @@
+ext {
+    configuration = [
+            javaVersion = JavaVersion.VERSION_21
+    ]
+
+    libraries = [
+            springBoot3Version = '3.2.7',
+            springCloudVersion = '2023.0.3'
+    ]
+
+    lib = [
+    ]
+}

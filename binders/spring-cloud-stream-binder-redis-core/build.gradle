@@ -1,0 +1,14 @@
+dependencies {
+
+    api "org.slf4j:slf4j-api"
+    api "org.springframework.cloud:spring-cloud-stream"
+    api "org.springframework.integration:spring-integration-redis"
+    api 'org.apache.commons:commons-pool2'
+
+    implementation 'redis.clients:jedis'
+
+    annotationProcessor "org.springframework.boot:spring-boot-starter-actuator"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
