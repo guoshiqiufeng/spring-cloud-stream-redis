@@ -7,14 +7,16 @@ Read in other languages: [简体中文](README-zh.md)
 
 ### Introduction
 
-Sending and Receiving Redis Messages Based on Spring Cloud Stream Specification
+Sending and Receiving Redis Messages Based on Spring Cloud Stream Specification，Official Version Aligned with Spring Cloud Stream.
 
 ### Documentation
 
+https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
+
 ### Development Framework
 
-- Spring Cloud 2023.0.3
-- Spring Boot 3.2.7
+- Spring Cloud 4.1.3
+- Spring Boot
 
 ### Features
 

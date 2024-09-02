@@ -7,16 +7,16 @@
 
 ### 介绍
 
-基于Spring Cloud Stream 规范实现 Redis 消息 发送、接收
+基于Spring Cloud Stream 规范实现 Redis 消息 发送、接收， 正式版本 与 Spring Cloud Stream 保持一致
 
 ### 文档
 
-
+https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
 
 ### 开发框架
 
-- Spring Cloud 2023.0.3
-- Spring Boot 3.2.7
+- Spring Cloud 4.1.3
+- Spring Boot
 
 ### 功能
 

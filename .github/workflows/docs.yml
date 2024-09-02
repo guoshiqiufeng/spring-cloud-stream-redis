@@ -19,9 +19,10 @@ jobs:
 
       - name: Init VuePress
         run: |
+          APP_VERSION=$(grep 'APP_VERSION' gradle.properties | awk -F'=' '{print $2}' | tr -d '[:space:]')
           echo '{
              "name": "spring-cloud-stream-redis-doc",
-             "version": "0.1.0",
+             "version": "'"$APP_VERSION"'",
              "description": "spring-cloud-stream-redis doc",
              "main": "index.js",
              "scripts": {
@@ -77,3 +78,4 @@ jobs:
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-
