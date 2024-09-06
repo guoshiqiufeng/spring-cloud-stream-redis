@@ -28,6 +28,10 @@ subprojects {
         options.release = 17
     }
 
+    compileTestJava {
+        options.release = 17
+    }
+
     repositories {
         mavenLocal()
         maven { url "https://maven.aliyun.com/repository/public" }

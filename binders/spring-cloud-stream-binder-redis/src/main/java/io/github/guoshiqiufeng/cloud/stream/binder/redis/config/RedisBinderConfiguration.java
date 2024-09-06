@@ -32,7 +32,6 @@ import org.springframework.cloud.stream.config.ProducerMessageHandlerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.integration.redis.inbound.RedisQueueMessageDrivenEndpoint;
 import org.springframework.integration.redis.inbound.RedisStoreMessageSource;
 
 /**
@@ -67,7 +66,7 @@ public class RedisBinderConfiguration {
             @Nullable ListenerContainerCustomizer<RedisMessageListenerContainer> listenerContainerCustomizer,
             @Nullable MessageSourceCustomizer<RedisStoreMessageSource> sourceCustomizer,
             @Nullable ProducerMessageHandlerCustomizer<?> messageHandlerCustomizer,
-            @Nullable ConsumerEndpointCustomizer<RedisQueueMessageDrivenEndpoint> consumerCustomizer,
+            @Nullable ConsumerEndpointCustomizer<?> consumerCustomizer,
             RedisExtendedBindingProperties redisExtendedBindingProperties
     ) {
 

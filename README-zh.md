@@ -30,7 +30,9 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
 ### 使用
 
 #### 引入统一版本依赖，不用再使用时指定版本号
+
 ```xml
+
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -46,6 +48,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
 #### 引入starter依赖
 
 ```xml
+
 <dependency>
     <groupId>io.github.guoshiqiufeng.cloud</groupId>
     <artifactId>spring-cloud-starter-stream-redis</artifactId>
@@ -70,10 +73,10 @@ spring:
             password: 123456
             database: 7
           support-type: queue_channel
-#        bindings:
-#          send-in-0:
-#            consumer:
-#              destination-is-pattern: true
+      #        bindings:
+      #          send-in-0:
+      #            consumer:
+      #              destination-is-pattern: true
       bindings:
         out-0:
           destination: test-topic
@@ -88,24 +91,26 @@ spring:
 #### 消息发送
 
 ```java
-    @Autowired
-    private StreamBridge streamBridge;
 
-    @GetMapping("/send")
-    public String send() {
-        MessageVO messageVO = new MessageVO();
-        messageVO.setKey(UUID.randomUUID().toString());
-        messageVO.setMsg("hello ");
-        messageVO.setIds(Set.of("1", "2"));
-        messageVO.setCreateTime(LocalDateTime.now());
-        streamBridge.send("out-0", JSON.toJSONString(messageVO, JSONWriter.Feature.WriteClassName));
-        return "success";
-    }
+@Autowired
+private StreamBridge streamBridge;
+
+@GetMapping("/send")
+public String send() {
+    MessageVO messageVO = new MessageVO();
+    messageVO.setKey(UUID.randomUUID().toString());
+    messageVO.setMsg("hello ");
+    messageVO.setIds(Set.of("1", "2"));
+    messageVO.setCreateTime(LocalDateTime.now());
+    streamBridge.send("out-0", JSON.toJSONString(messageVO, JSONWriter.Feature.WriteClassName));
+    return "success";
+}
 ```
 
 ### 消息接收
 
 ```java
+
 @Slf4j
 @Component("send")
 public class MessageHandler implements Consumer<Message<String>> {
@@ -121,4 +126,5 @@ public class MessageHandler implements Consumer<Message<String>> {
     }
 }
 ```
+
 更多使用参考查看文档

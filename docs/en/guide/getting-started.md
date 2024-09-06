@@ -3,15 +3,18 @@ lang: en-US
 title: Getting-started
 description: Getting-started
 ---
-<script setup>
-import {inject} from "vue";
+
+<script setup>import {inject} from "vue";
 const version = inject('version');
 </script>
+
 # Getting-started
 
-Let's go through a simple demo to introduce how to use [spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) features。
+Let's go through a simple demo to introduce how to
+use [spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) features。
 
 ## Initialization
+
 Create an empty Spring Boot project，Here we are using version 3.2.0 .
 
 ## Adding Dependencies
@@ -47,7 +50,9 @@ implementation group: 'io.github.guoshiqiufeng.cloud', name: 'spring-cloud-start
 </CodeGroup>
 
 ## Configuration
+
 Add the configuration to application.yml:
+
 ```yaml
 spring:
   cloud:
@@ -79,13 +84,12 @@ spring:
           group: test-send-group
 ```
 
- 
-
 ## Coding
 
 Write the entity class `MessageVO.java`
 
 ```java
+
 @Data
 public class MessageVO implements Serializable {
 
@@ -106,6 +110,7 @@ public class MessageVO implements Serializable {
 Write the Listener class `MessageHandler.java`
 
 ```java
+
 @Slf4j
 @Component("send")
 public class MessageHandler implements Consumer<Message<String>> {
@@ -126,8 +131,8 @@ public class MessageHandler implements Consumer<Message<String>> {
 
 Add a test Controller class for functional testing:
 
-
 ```java
+
 @Slf4j
 @RestController
 public class TestController {
@@ -148,6 +153,7 @@ public class TestController {
 
 }
 ```
- 
+
 ## Wrap-up
+
 With these few simple steps, we have implemented the sending and consuming of MessageVO.

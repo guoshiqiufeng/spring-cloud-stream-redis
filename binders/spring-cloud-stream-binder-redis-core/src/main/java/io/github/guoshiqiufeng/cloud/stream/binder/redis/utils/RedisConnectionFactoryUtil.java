@@ -24,6 +24,8 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.lang.NonNull;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +38,15 @@ import java.util.Optional;
 @UtilityClass
 public class RedisConnectionFactoryUtil {
 
-    public RedisConnectionFactory getRedisConnectionFactory(RedisProperties redisProperties) {
+    /**
+     * get the RedisConnectionFactory
+     *
+     * @param redisProperties redisProperties
+     * @return RedisConnectionFactory
+     */
+    public RedisConnectionFactory getRedisConnectionFactory(@NonNull RedisProperties redisProperties) {
+        Assert.notNull(redisProperties,
+                "'properties' must not be null");
         RedisProperties.ClientType clientType = redisProperties.getClientType();
 
         if (clientType == RedisProperties.ClientType.JEDIS) {

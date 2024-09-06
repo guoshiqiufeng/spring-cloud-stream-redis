@@ -5,6 +5,7 @@ dependencies {
     api "org.springframework.integration:spring-integration-redis"
     api 'org.apache.commons:commons-pool2'
 
+    implementation 'io.lettuce:lettuce-core'
     implementation 'redis.clients:jedis'
 
     annotationProcessor "org.springframework.boot:spring-boot-starter-actuator"

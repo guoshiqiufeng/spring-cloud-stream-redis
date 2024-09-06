@@ -19,6 +19,7 @@ footer: Apache License 2.0 | Copyright © 2023-present fubluesky
 ---
 
 ### 最新版本
+
 <div style="text-align: center;">
 
 [![Maven central](https://img.shields.io/maven-central/v/io.github.guoshiqiufeng.cloud/spring-cloud-starter-stream-redis.svg?style=flat-square)](https://search.maven.org/search?q=g:io.github.guoshiqiufeng.cloud%20AND%20a:spring-cloud-starter-stream-redis)

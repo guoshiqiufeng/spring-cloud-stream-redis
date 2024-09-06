@@ -3,9 +3,10 @@ lang: zh-CN
 title: 介绍
 description: 
 ---
+
 # 简介
 
-[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) 是一个 基于 spring-cloud-stream 
+[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) 是一个 基于 spring-cloud-stream
 实现的 Redis 消息 框架。
 
 ## 特性
@@ -22,15 +23,16 @@ description:
 * 可用 - ✅
 * 进行中 - 🚧
 
-| 功能                                                              | 状态 |   
-|-----------------------------------------------------------------|----|
-| 【PUBLISH SUBSCRIBE】【Topic】Send                                  | ✅  |    
-| 【PUBLISH SUBSCRIBE】【Topic】   Consumer with message listener     | ✅  |    
+| 功能                                                               | 状态 |   
+|------------------------------------------------------------------|----|
+| 【PUBLISH SUBSCRIBE】【Topic】Send                                   | ✅  |    
+| 【PUBLISH SUBSCRIBE】【Topic】   Consumer with message listener      | ✅  |    
 | 【PUBLISH SUBSCRIBE】【Topic-Pattern】Consumer with message listener | ✅  |    
-| 【QUEUE】【Topic】Send                                              | ✅  |    
-| 【QUEUE】【Topic】Consumer with message listener                    | ✅  |    
+| 【QUEUE】【Topic】Send                                               | ✅  |    
+| 【QUEUE】【Topic】Consumer with message listener                     | ✅  |    
 
 注：
+
 - 两个功能模式不能混合使用，即 使用 PUBLISH SUBSCRIBE 模式 发送消息 时，不能使用 QUEUE 模式接收消息，反之亦然
 
 - PUBLISH SUBSCRIBE 模式消息接收不到会丢失，QUEUE 模式不会

@@ -7,7 +7,8 @@ Read in other languages: [简体中文](README-zh.md)
 
 ### Introduction
 
-Sending and Receiving Redis Messages Based on Spring Cloud Stream Specification，Official Version Aligned with Spring Cloud Stream.
+Sending and Receiving Redis Messages Based on Spring Cloud Stream Specification，Official Version Aligned with Spring
+Cloud Stream.
 
 ### Documentation
 
@@ -23,15 +24,17 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
 - PUBLISH SUBSCRIBE message
 - QUEUE message（BLPOP BRPOP LPUSH RPUSH）
 
-> Tips 1: The two function modes cannot be mixed, i.e., if you send a message in PUBLISH SUBSCRIBE mode, you cannot receive a message in QUEUE mode, and vice versa.
+> Tips 1: The two function modes cannot be mixed, i.e., if you send a message in PUBLISH SUBSCRIBE mode, you cannot
+> receive a message in QUEUE mode, and vice versa.
 
 > Tips 2： PUBLISH SUBSCRIBE mode messages will be lost if not received, QUEUE mode will not.
 
 ### Use
 
-
 #### Introduces a uniform version dependency, so you don't have to specify a version number when you use it.
+
 ```xml
+
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -47,6 +50,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
 #### Introducing starter dependencies
 
 ```xml
+
 <dependency>
     <groupId>io.github.guoshiqiufeng.cloud</groupId>
     <artifactId>spring-cloud-starter-stream-redis</artifactId>
@@ -71,10 +75,10 @@ spring:
             password: 123456
             database: 7
           support-type: queue_channel
-#        bindings:
-#          send-in-0:
-#            consumer:
-#              destination-is-pattern: true
+      #        bindings:
+      #          send-in-0:
+      #            consumer:
+      #              destination-is-pattern: true
       bindings:
         out-0:
           destination: test-topic
@@ -89,24 +93,26 @@ spring:
 #### Messaging
 
 ```java
-    @Autowired
-    private StreamBridge streamBridge;
 
-    @GetMapping("/send")
-    public String send() {
-        MessageVO messageVO = new MessageVO();
-        messageVO.setKey(UUID.randomUUID().toString());
-        messageVO.setMsg("hello ");
-        messageVO.setIds(Set.of("1", "2"));
-        messageVO.setCreateTime(LocalDateTime.now());
-        streamBridge.send("out-0", JSON.toJSONString(messageVO, JSONWriter.Feature.WriteClassName));
-        return "success";
-    }
+@Autowired
+private StreamBridge streamBridge;
+
+@GetMapping("/send")
+public String send() {
+    MessageVO messageVO = new MessageVO();
+    messageVO.setKey(UUID.randomUUID().toString());
+    messageVO.setMsg("hello ");
+    messageVO.setIds(Set.of("1", "2"));
+    messageVO.setCreateTime(LocalDateTime.now());
+    streamBridge.send("out-0", JSON.toJSONString(messageVO, JSONWriter.Feature.WriteClassName));
+    return "success";
+}
 ```
 
 ### Message reception
 
 ```java
+
 @Slf4j
 @Component("send")
 public class MessageHandler implements Consumer<Message<String>> {
@@ -122,4 +128,5 @@ public class MessageHandler implements Consumer<Message<String>> {
     }
 }
 ```
+
 For more usage references check the documentation

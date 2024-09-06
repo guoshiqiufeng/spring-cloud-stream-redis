@@ -3,14 +3,15 @@ lang: en-US
 title: Install
 description: Install
 ---
-<script setup>
-import {inject} from "vue";
+
+<script setup>import {inject} from "vue";
 const version = inject('version');
 </script>
+
 # Install
 
-[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) Based on JDK21, support SpringBoot 3.x.
-
+[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) Based on JDK21, support
+SpringBoot 3.x.
 
 ## SpringBoot 3.x
 

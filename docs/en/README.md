@@ -18,7 +18,6 @@ features:
 footer: Apache License 2.0 | Copyright © 2023-present fubluesky
 ---
 
-
 ### Latest version
 
 <div style="text-align: center;">

@@ -1,11 +1,14 @@
 dependencies {
     api project(":binders:spring-cloud-stream-binder-redis-core")
 
-    // implementation "org.springframework.cloud:spring-cloud-stream"
-
     annotationProcessor "org.springframework.boot:spring-boot-starter-actuator"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     annotationProcessor "org.springframework.boot:spring-boot-autoconfigure"
 
+    testImplementation 'io.lettuce:lettuce-core'
+    testImplementation 'redis.clients:jedis'
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.cloud:spring-cloud-stream-test-support"
+    testImplementation "org.testcontainers:testcontainers"
+    testImplementation 'org.testcontainers:junit-jupiter'
 }

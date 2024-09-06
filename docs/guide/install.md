@@ -3,14 +3,14 @@ lang: zh-CN
 title: 安装
 description: 
 ---
-<script setup>
-import {inject} from "vue";
+
+<script setup>import {inject} from "vue";
 const version = inject('version');
 </script>
+
 # 安装
 
 [spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) 基于JDK21, 支持SpringBoot 3.x.
-
 
 ## SpringBoot 3.x
 

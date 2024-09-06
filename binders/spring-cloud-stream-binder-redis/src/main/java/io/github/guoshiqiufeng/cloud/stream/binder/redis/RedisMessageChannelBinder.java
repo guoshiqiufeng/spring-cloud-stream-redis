@@ -165,12 +165,7 @@ public class RedisMessageChannelBinder extends
             redisQueueMessageDrivenEndpoint.setApplicationContext(applicationContext);
             return redisQueueMessageDrivenEndpoint;
         }
-        // ErrorInfrastructure errorInfrastructure = registerErrorInfrastructure(destination,
-        // consumerGroup, extendedConsumerProperties);
 
-        // ListenerContainerCustomizer<?> customizer = getContainerCustomizer();
-
-        // return redisMessageDrivenChannelAdapter;
     }
 
     @Override

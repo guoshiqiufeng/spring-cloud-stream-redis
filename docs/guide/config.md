@@ -3,6 +3,7 @@ lang: zh-cn
 title: 配置
 description: 
 ---
+
 # 配置
 
 [spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) 的配置异常的简单，我们仅需要一些简单的配置即可！
@@ -12,6 +13,7 @@ description:
 ## Redis
 
 ### `application.yml` 配置 连接参数
+
 > 支持redis单机版、集群、哨兵模式
 >
 > 支持`spring.data.redis`下的所有配置
@@ -47,7 +49,6 @@ spring:
           content-type: text/plain
           group: test-send-group
 ```
-
 
 ### 可选客户端
 

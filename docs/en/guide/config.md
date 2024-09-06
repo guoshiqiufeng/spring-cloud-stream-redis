@@ -3,19 +3,21 @@ lang: en-US
 title: Configure
 description: Configure
 ---
+
 # Configure
 
-[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) is very easy to configure, we just need some simple configuration！
+[spring-cloud-stream-redis](https://github.com/guoshiqiufeng/spring-cloud-stream-redis) is very easy to configure, we
+just need some simple configuration！
 
 > ake sure you have spring-cloud-stream-redis installed，if you haven't, check out the [Install](install.md)。
 
 ## Redis
 
 ### `application.yml` Configure connection parameters
+
 > Support Redis Standalone, Cluster, and Sentinel modes
 >
 > Support all configurations under `spring.data.redis`
-
 
 ```yaml:no-line-numbers
 spring:
@@ -48,10 +50,10 @@ spring:
           group: test-send-group
 ```
 
-
 ### Optional Clients
 
-The default is to use the `lettuce` client, if you need to switch to the jedis client, you can add a jedis dependency to do so, with the same configuration parameters as spring-boot-starter-data-redis.
+The default is to use the `lettuce` client, if you need to switch to the jedis client, you can add a jedis dependency to
+do so, with the same configuration parameters as spring-boot-starter-data-redis.
 
 ```yaml:no-line-numbers
 spring:
