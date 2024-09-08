@@ -15,10 +15,12 @@
  */
 package io.github.guoshiqiufeng.cloud.stream.binder.redis.properties;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.util.Assert;
 
 /**
@@ -40,6 +42,14 @@ public class RedisBinderConfigurationProperties {
 
     @Getter
     @Setter
+    private ConfigurationProperties consumerProperties = new ConfigurationProperties();
+
+    @Getter
+    @Setter
+    private ConfigurationProperties producerProperties = new ConfigurationProperties();
+
+    @Getter
+    @Setter
     private String[] headers = new String[]{};
 
     public RedisBinderConfigurationProperties(RedisProperties redisProperties) {
@@ -57,5 +67,15 @@ public class RedisBinderConfigurationProperties {
          * list right pop
          */
         QUEUE_CHANNEL
+    }
+
+    @Data
+    public static class ConfigurationProperties {
+
+        /**
+         * serializer @see {@link RedisSerializer}.
+         */
+        private RedisSerializer<?> serializer;
+
     }
 }

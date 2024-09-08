@@ -25,6 +25,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.cloud.stream.binder.*;
 import org.springframework.cloud.stream.config.BindingProperties;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -95,11 +96,11 @@ public class RedisBinderTests extends
 
         moduleOutputChannel.send(message);
         var latch = new CountDownLatch(1);
-        AtomicReference<Message<String>> inboundMessageRef = new AtomicReference<>();
+        AtomicReference<Message<byte[]>> inboundMessageRef = new AtomicReference<>();
 
         moduleInputChannel.subscribe(message1 -> {
             try {
-                inboundMessageRef.set((Message<String>) message1);
+                inboundMessageRef.set((Message<byte[]>) message1);
             } finally {
                 latch.countDown();
             }
@@ -111,7 +112,7 @@ public class RedisBinderTests extends
 
         assertThat(
                 inboundMessageRef.get().getPayload())
-                .isEqualTo("foo");
+                .isEqualTo("foo".getBytes());
         assertThat(inboundMessageRef.get().getHeaders().get(MessageHeaders.CONTENT_TYPE))
                 .isEqualTo(MimeTypeUtils.APPLICATION_JSON);
 
@@ -148,10 +149,10 @@ public class RedisBinderTests extends
         binderBindUnbindLatency();
         moduleOutputChannel.send(message);
         var latch = new CountDownLatch(1);
-        AtomicReference<Message<String>> inboundMessageRef = new AtomicReference<>();
+        AtomicReference<Message<byte[]>> inboundMessageRef = new AtomicReference<>();
         moduleInputChannel.subscribe(message1 -> {
             try {
-                inboundMessageRef.set((Message<String>) message1);
+                inboundMessageRef.set((Message<byte[]>) message1);
             } finally {
                 latch.countDown();
             }
@@ -160,7 +161,7 @@ public class RedisBinderTests extends
 
         assertThat(inboundMessageRef.get()).isNotNull();
         assertThat(inboundMessageRef.get().getPayload())
-                .isEqualTo("foo");
+                .isEqualTo("foo".getBytes());
         assertThat(inboundMessageRef.get().getHeaders().get(MessageHeaders.CONTENT_TYPE))
                 .isEqualTo(MimeTypeUtils.APPLICATION_JSON);
 
@@ -229,6 +230,8 @@ public class RedisBinderTests extends
         var binderConfiguration = new RedisBinderConfigurationProperties(
                 redisProperties);
         binderConfiguration.setSupportType(RedisBinderConfigurationProperties.SupportType.PUBLISH_SUBSCRIBE_CHANNEL);
+        binderConfiguration.getConsumerProperties().setSerializer(RedisSerializer.byteArray());
+        binderConfiguration.getProducerProperties().setSerializer(RedisSerializer.byteArray());
         return binderConfiguration;
     }
 }

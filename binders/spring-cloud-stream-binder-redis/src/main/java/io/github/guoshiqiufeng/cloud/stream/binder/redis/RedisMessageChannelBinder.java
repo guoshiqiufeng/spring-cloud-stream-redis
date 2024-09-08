@@ -97,7 +97,7 @@ public class RedisMessageChannelBinder extends
     }
 
     @Override
-    protected MessageHandler createProducerMessageHandler(ProducerDestination destination, ExtendedProducerProperties<RedisProducerProperties> producerProperties, MessageChannel channel, MessageChannel errorChannel) throws Exception {
+    protected MessageHandler createProducerMessageHandler(ProducerDestination destination, ExtendedProducerProperties<RedisProducerProperties> extendedConsumerProperties, MessageChannel channel, MessageChannel errorChannel) throws Exception {
 
         RedisConnectionFactory connectionFactory = RedisConnectionFactoryUtil.getRedisConnectionFactory(
                 configurationProperties.getConfiguration());
@@ -106,17 +106,24 @@ public class RedisMessageChannelBinder extends
         BeanFactory beanFactory = applicationContext.getBeanFactory();
 
         RedisBinderConfigurationProperties.SupportType supportType = configurationProperties.getSupportType();
+        RedisBinderConfigurationProperties.ConfigurationProperties producerProperties = configurationProperties.getProducerProperties();
         if (supportType == null || supportType.equals(RedisBinderConfigurationProperties.SupportType.PUBLISH_SUBSCRIBE_CHANNEL)) {
             RedisPublishingMessageHandler handler = new RedisPublishingMessageHandler(connectionFactory);
             handler.setTopic(destination.getName());
             handler.setApplicationContext(applicationContext);
             handler.setBeanFactory(beanFactory);
+            if (producerProperties != null && producerProperties.getSerializer() != null) {
+                handler.setSerializer(producerProperties.getSerializer());
+            }
             return handler;
         } else {
             RedisQueueOutboundChannelAdapter handler = new RedisQueueOutboundChannelAdapter(destination.getName(), connectionFactory);
             // handler.set
             handler.setApplicationContext(applicationContext);
             handler.setBeanFactory(beanFactory);
+            if (producerProperties != null && producerProperties.getSerializer() != null) {
+                handler.setSerializer(producerProperties.getSerializer());
+            }
             return handler;
         }
     }
@@ -143,6 +150,7 @@ public class RedisMessageChannelBinder extends
                 configurationProperties.getConfiguration());
 
         RedisBinderConfigurationProperties.SupportType supportType = configurationProperties.getSupportType();
+        RedisBinderConfigurationProperties.ConfigurationProperties consumerProperties = configurationProperties.getConsumerProperties();
         if (supportType == null || supportType.equals(RedisBinderConfigurationProperties.SupportType.PUBLISH_SUBSCRIBE_CHANNEL)) {
             RedisInboundChannelAdapter redisInboundChannelAdapter = new RedisInboundChannelAdapter(connectionFactory);
             if (usingPatterns) {
@@ -151,6 +159,9 @@ public class RedisMessageChannelBinder extends
                 redisInboundChannelAdapter.setTopics(destination.getName());
             }
             redisInboundChannelAdapter.setBeanName(extendedConsumerProperties.getBindingName());
+            if (consumerProperties != null && consumerProperties.getSerializer() != null) {
+                redisInboundChannelAdapter.setSerializer(consumerProperties.getSerializer());
+            }
             redisInboundChannelAdapter.setBeanFactory(getBeanFactory());
             redisInboundChannelAdapter.setApplicationContext(applicationContext);
             return redisInboundChannelAdapter;
@@ -163,6 +174,9 @@ public class RedisMessageChannelBinder extends
             redisQueueMessageDrivenEndpoint.setBeanName(extendedConsumerProperties.getBindingName());
             redisQueueMessageDrivenEndpoint.setBeanFactory(getBeanFactory());
             redisQueueMessageDrivenEndpoint.setApplicationContext(applicationContext);
+            if (consumerProperties != null && consumerProperties.getSerializer() != null) {
+                redisQueueMessageDrivenEndpoint.setSerializer(consumerProperties.getSerializer());
+            }
             return redisQueueMessageDrivenEndpoint;
         }
 
