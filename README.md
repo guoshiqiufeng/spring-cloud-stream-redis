@@ -40,7 +40,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
         <dependency>
             <groupId>io.github.guoshiqiufeng.cloud</groupId>
             <artifactId>spring-cloud-stream-dependencies</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
             <type>import</type>
         </dependency>
     </dependencies>
