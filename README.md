@@ -17,7 +17,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
 
 ### Development Framework
 
-- Spring Cloud 4.1.3
+- Spring Cloud Stream 4.1.3
 - Spring Boot
 
 ### Features
