@@ -2,6 +2,7 @@
 
 [![Maven central](https://img.shields.io/maven-central/v/io.github.guoshiqiufeng.cloud/spring-cloud-starter-stream-redis.svg?style=flat-square)](https://search.maven.org/search?q=g:io.github.guoshiqiufeng.cloud%20AND%20a:spring-cloud-starter-stream-redis)
 [![License](https://img.shields.io/:license-apache-brightgreen.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![CodeQL](https://github.com/guoshiqiufeng/spring-cloud-stream-redis/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/guoshiqiufeng/spring-cloud-stream-redis/actions/workflows/github-code-scanning/codeql)
 
 Read in other languages: [简体中文](README-zh.md)
 
