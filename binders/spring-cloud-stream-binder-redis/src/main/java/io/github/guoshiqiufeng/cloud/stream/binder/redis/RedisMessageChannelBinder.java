@@ -20,6 +20,7 @@ import io.github.guoshiqiufeng.cloud.stream.binder.redis.properties.RedisConsume
 import io.github.guoshiqiufeng.cloud.stream.binder.redis.properties.RedisExtendedBindingProperties;
 import io.github.guoshiqiufeng.cloud.stream.binder.redis.properties.RedisProducerProperties;
 import io.github.guoshiqiufeng.cloud.stream.binder.redis.provisioning.RedisTopicProvisioner;
+import io.github.guoshiqiufeng.cloud.stream.binder.redis.support.converter.MessagingMessageConverter;
 import io.github.guoshiqiufeng.cloud.stream.binder.redis.utils.RedisConnectionFactoryUtil;
 import lombok.Setter;
 import org.springframework.beans.factory.BeanFactory;
@@ -30,6 +31,7 @@ import org.springframework.cloud.stream.provisioning.ConsumerDestination;
 import org.springframework.cloud.stream.provisioning.ProducerDestination;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.integration.core.MessageProducer;
 import org.springframework.integration.redis.inbound.RedisInboundChannelAdapter;
 import org.springframework.integration.redis.inbound.RedisQueueMessageDrivenEndpoint;
@@ -115,15 +117,13 @@ public class RedisMessageChannelBinder extends
             if (producerProperties != null && producerProperties.getSerializer() != null) {
                 handler.setSerializer(producerProperties.getSerializer());
             }
+            handler.setMessageConverter(new MessagingMessageConverter());
             return handler;
         } else {
             RedisQueueOutboundChannelAdapter handler = new RedisQueueOutboundChannelAdapter(destination.getName(), connectionFactory);
-            // handler.set
             handler.setApplicationContext(applicationContext);
             handler.setBeanFactory(beanFactory);
-            if (producerProperties != null && producerProperties.getSerializer() != null) {
-                handler.setSerializer(producerProperties.getSerializer());
-            }
+            handler.setExtractPayload(false);
             return handler;
         }
     }
@@ -162,6 +162,7 @@ public class RedisMessageChannelBinder extends
             if (consumerProperties != null && consumerProperties.getSerializer() != null) {
                 redisInboundChannelAdapter.setSerializer(consumerProperties.getSerializer());
             }
+            redisInboundChannelAdapter.setMessageConverter(new MessagingMessageConverter());
             redisInboundChannelAdapter.setBeanFactory(getBeanFactory());
             redisInboundChannelAdapter.setApplicationContext(applicationContext);
             return redisInboundChannelAdapter;
@@ -174,9 +175,8 @@ public class RedisMessageChannelBinder extends
             redisQueueMessageDrivenEndpoint.setBeanName(extendedConsumerProperties.getBindingName());
             redisQueueMessageDrivenEndpoint.setBeanFactory(getBeanFactory());
             redisQueueMessageDrivenEndpoint.setApplicationContext(applicationContext);
-            if (consumerProperties != null && consumerProperties.getSerializer() != null) {
-                redisQueueMessageDrivenEndpoint.setSerializer(consumerProperties.getSerializer());
-            }
+            redisQueueMessageDrivenEndpoint.setSerializer(RedisSerializer.java());
+            redisQueueMessageDrivenEndpoint.setExpectMessage(true);
             return redisQueueMessageDrivenEndpoint;
         }
 

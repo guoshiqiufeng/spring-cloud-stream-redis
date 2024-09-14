@@ -114,7 +114,7 @@ public class RedisBinderTests extends
                 inboundMessageRef.get().getPayload())
                 .isEqualTo("foo".getBytes());
         assertThat(inboundMessageRef.get().getHeaders().get(MessageHeaders.CONTENT_TYPE))
-                .isEqualTo(MimeTypeUtils.APPLICATION_JSON);
+                .isEqualTo(MimeTypeUtils.TEXT_PLAIN);
 
         producerBinding.unbind();
         consumerBinding.unbind();
@@ -163,7 +163,7 @@ public class RedisBinderTests extends
         assertThat(inboundMessageRef.get().getPayload())
                 .isEqualTo("foo".getBytes());
         assertThat(inboundMessageRef.get().getHeaders().get(MessageHeaders.CONTENT_TYPE))
-                .isEqualTo(MimeTypeUtils.APPLICATION_JSON);
+                .isEqualTo(MimeTypeUtils.TEXT_PLAIN);
 
         producerBinding.unbind();
         consumerBinding.unbind();
@@ -229,7 +229,7 @@ public class RedisBinderTests extends
     private RedisBinderConfigurationProperties createConfigurationProperties() {
         var binderConfiguration = new RedisBinderConfigurationProperties(
                 redisProperties);
-        binderConfiguration.setSupportType(RedisBinderConfigurationProperties.SupportType.PUBLISH_SUBSCRIBE_CHANNEL);
+        binderConfiguration.setSupportType(RedisBinderConfigurationProperties.SupportType.QUEUE_CHANNEL);
         binderConfiguration.getConsumerProperties().setSerializer(RedisSerializer.byteArray());
         binderConfiguration.getProducerProperties().setSerializer(RedisSerializer.byteArray());
         return binderConfiguration;
