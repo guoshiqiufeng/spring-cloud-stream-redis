@@ -130,4 +130,4 @@ public class MessageHandler implements Consumer<Message<String>> {
 }
 ```
 
-For more usage references check the documentation
+For more usage references check the [documentation](https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/)

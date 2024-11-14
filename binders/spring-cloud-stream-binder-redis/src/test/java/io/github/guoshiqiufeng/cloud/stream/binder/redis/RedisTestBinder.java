@@ -55,7 +55,7 @@ class RedisTestBinder extends AbstractRedisTestBinder {
             binder.afterPropertiesSet();
             this.setPollableConsumerBinder(binder);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to initialize RedisTestBinder: " + e.getMessage(), e);
         }
     }
 

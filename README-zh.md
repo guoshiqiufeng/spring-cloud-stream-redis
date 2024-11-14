@@ -128,4 +128,4 @@ public class MessageHandler implements Consumer<Message<String>> {
 }
 ```
 
-更多使用参考查看文档
+更多使用参考查看[文档](https://guoshiqiufeng.github.io/spring-cloud-stream-redis/zh/)

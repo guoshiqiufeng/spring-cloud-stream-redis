@@ -58,7 +58,7 @@ public class RedisBinderEnvironmentPostProcessor implements EnvironmentPostProce
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        log.error("postProcessEnvironment:{}", environment.getPropertySources());
+        log.debug("postProcessEnvironment:{}", environment.getPropertySources());
         if (!environment.getPropertySources().contains(REDIS_BINDER_DEFAULT_PROPERTIES)) {
             Map<String, Object> redisBinderDefaultProperties = new HashMap<>();
             redisBinderDefaultProperties.put("logging.level.io.github.guoshiqiufeng.stream",
