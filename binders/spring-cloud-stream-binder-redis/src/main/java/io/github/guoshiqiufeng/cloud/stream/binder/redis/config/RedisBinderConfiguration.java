@@ -31,6 +31,7 @@ import org.springframework.cloud.stream.config.MessageSourceCustomizer;
 import org.springframework.cloud.stream.config.ProducerMessageHandlerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.integration.redis.inbound.RedisStoreMessageSource;
 
@@ -41,7 +42,7 @@ import org.springframework.integration.redis.inbound.RedisStoreMessageSource;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnMissingBean(Binder.class)
-// @Import({RedisBinderHealthIndicatorConfiguration.class})
+@Import({RedisBinderHealthIndicatorConfiguration.class})
 @EnableConfigurationProperties({RedisProperties.class, RedisExtendedBindingProperties.class})
 public class RedisBinderConfiguration {
 
