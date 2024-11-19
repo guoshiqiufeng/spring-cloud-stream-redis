@@ -60,6 +60,7 @@ export default defineUserConfig({
                                 '/guide/getting-started',
                                 '/guide/install',
                                 '/guide/config',
+                                '/guide/actuator',
                                 // '/guide/annotation',
                             ]
                         },
@@ -90,6 +91,7 @@ export default defineUserConfig({
                             '/guide/getting-started',
                             '/guide/install',
                             '/guide/config',
+                            '/guide/actuator',
                             // '/guide/annotation',
                             // {
                             //     text: '发送消息',
@@ -149,6 +151,7 @@ export default defineUserConfig({
                                 '/en/guide/getting-started',
                                 '/en/guide/install',
                                 '/en/guide/config',
+                                '/en/guide/actuator',
                                 // '/en/guide/annotation',
                             ]
                         },
@@ -180,6 +183,7 @@ export default defineUserConfig({
                             '/en/guide/getting-started',
                             '/en/guide/install',
                             '/en/guide/config',
+                            '/en/guide/actuator',
                             // '/en/guide/annotation',
                             // {
                             //     text: 'Send message',
