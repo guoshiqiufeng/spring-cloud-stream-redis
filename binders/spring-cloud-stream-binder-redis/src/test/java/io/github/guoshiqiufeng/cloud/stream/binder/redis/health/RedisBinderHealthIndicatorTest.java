@@ -36,8 +36,6 @@ class RedisBinderHealthIndicatorTest {
 
     private static final String REDIS_PONG_RESPONSE = "PONG";
     private static final String REDIS_VERSION_KEY = "redis_version";
-    private static final String REDIS_MODE_KEY = "redis_mode";
-    private static final String SERVER_INFO_SECTION = "server";
 
     @Test
     void healthUp() {
@@ -52,16 +50,14 @@ class RedisBinderHealthIndicatorTest {
         // Mock Redis info command response
         Properties serverInfo = new Properties();
         serverInfo.setProperty(REDIS_VERSION_KEY, "7.0.2");
-        serverInfo.setProperty(REDIS_MODE_KEY, "standalone");
-        when(serverCommands.info(SERVER_INFO_SECTION)).thenReturn(serverInfo);
+        when(serverCommands.info()).thenReturn(serverInfo);
 
         RedisBinderHealthIndicator healthIndicator = new RedisBinderHealthIndicator(connectionFactory);
         Health health = healthIndicator.health();
 
         assertThat(health.getStatus()).isEqualTo(Status.UP);
         assertThat(health.getDetails())
-                .containsEntry("version", "7.0.2")
-                .containsEntry("mode", "standalone");
+                .containsEntry("version", "7.0.2");
 
         verify(redisConnection).close();
     }
@@ -70,16 +66,20 @@ class RedisBinderHealthIndicatorTest {
     void healthDown() {
         RedisConnectionFactory connectionFactory = mock(RedisConnectionFactory.class);
         RedisConnection redisConnection = mock(RedisConnection.class);
+        RedisServerCommands serverCommands = mock(RedisServerCommands.class);
 
         when(connectionFactory.getConnection()).thenReturn(redisConnection);
         when(redisConnection.ping()).thenReturn("ERROR");
+        when(redisConnection.serverCommands()).thenReturn(serverCommands);
+        when(serverCommands.info()).thenThrow(new RuntimeException("Redis is down"));
 
         RedisBinderHealthIndicator healthIndicator = new RedisBinderHealthIndicator(connectionFactory);
         Health health = healthIndicator.health();
 
         assertThat(health.getStatus()).isEqualTo(Status.DOWN);
         assertThat(health.getDetails())
-                .containsEntry("ping", "ERROR");
+                .containsKey("error")
+                .containsValue("java.lang.RuntimeException: Redis is down");
 
         verify(redisConnection).close();
     }

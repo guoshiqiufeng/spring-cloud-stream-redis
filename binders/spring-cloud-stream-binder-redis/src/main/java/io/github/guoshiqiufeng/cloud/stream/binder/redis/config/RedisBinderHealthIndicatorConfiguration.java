@@ -15,9 +15,13 @@
  */
 package io.github.guoshiqiufeng.cloud.stream.binder.redis.config;
 
+import io.github.guoshiqiufeng.cloud.stream.binder.redis.health.RedisBinderHealth;
 import io.github.guoshiqiufeng.cloud.stream.binder.redis.health.RedisBinderHealthIndicator;
+import io.github.guoshiqiufeng.cloud.stream.binder.redis.properties.RedisBinderConfigurationProperties;
+import io.github.guoshiqiufeng.cloud.stream.binder.redis.utils.RedisConnectionFactoryUtil;
 import org.springframework.boot.actuate.autoconfigure.health.ConditionalOnEnabledHealthIndicator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -31,11 +35,14 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(name = "org.springframework.boot.actuate.health.HealthIndicator")
+@ConditionalOnEnabledHealthIndicator("binders")
+@ConditionalOnMissingBean(RedisBinderHealth.class)
 public class RedisBinderHealthIndicatorConfiguration {
 
     @Bean
-    @ConditionalOnEnabledHealthIndicator("redis")
-    public RedisBinderHealthIndicator redisBinderHealthIndicator(RedisConnectionFactory connectionFactory) {
+    public RedisBinderHealthIndicator redisBinderHealthIndicator(RedisBinderConfigurationProperties configurationProperties) {
+        RedisConnectionFactory connectionFactory = RedisConnectionFactoryUtil.getRedisConnectionFactory(
+                configurationProperties.getConfiguration());
         return new RedisBinderHealthIndicator(connectionFactory);
     }
 }
