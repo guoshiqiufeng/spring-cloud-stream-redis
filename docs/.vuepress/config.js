@@ -118,9 +118,7 @@ export default defineUserConfig({
                                 link: 'https://github.com/guoshiqiufeng/spring-cloud-stream-redis/releases',
                             }, {
                                 text: 'Maven central version',
-                                children: [
-                                    '/guide/maven-central-version'
-                                ]
+                                link: '/guide/maven-central-version'
                             }
                         ]
                     }
@@ -210,9 +208,7 @@ export default defineUserConfig({
                                 link: 'https://github.com/guoshiqiufeng/spring-cloud-stream-redis/releases',
                             }, {
                                 text: 'Maven central version',
-                                children: [
-                                    '/en/guide/maven-central-version'
-                                ]
+                                link: '/en/guide/maven-central-version'
                             }
                         ]
                     }
