@@ -60,6 +60,7 @@ export default defineUserConfig({
                                 '/guide/getting-started',
                                 '/guide/install',
                                 '/guide/config',
+                                '/guide/actuator',
                                 // '/guide/annotation',
                             ]
                         },
@@ -90,6 +91,7 @@ export default defineUserConfig({
                             '/guide/getting-started',
                             '/guide/install',
                             '/guide/config',
+                            '/guide/actuator',
                             // '/guide/annotation',
                             // {
                             //     text: '发送消息',
@@ -114,6 +116,11 @@ export default defineUserConfig({
                             {
                                 text: '更新日志',
                                 link: 'https://github.com/guoshiqiufeng/spring-cloud-stream-redis/releases',
+                            }, {
+                                text: 'Maven central version',
+                                children: [
+                                    '/guide/maven-central-version'
+                                ]
                             }
                         ]
                     }
@@ -144,6 +151,7 @@ export default defineUserConfig({
                                 '/en/guide/getting-started',
                                 '/en/guide/install',
                                 '/en/guide/config',
+                                '/en/guide/actuator',
                                 // '/en/guide/annotation',
                             ]
                         },
@@ -175,6 +183,7 @@ export default defineUserConfig({
                             '/en/guide/getting-started',
                             '/en/guide/install',
                             '/en/guide/config',
+                            '/en/guide/actuator',
                             // '/en/guide/annotation',
                             // {
                             //     text: 'Send message',
@@ -199,6 +208,11 @@ export default defineUserConfig({
                             {
                                 text: 'Changelog',
                                 link: 'https://github.com/guoshiqiufeng/spring-cloud-stream-redis/releases',
+                            }, {
+                                text: 'Maven central version',
+                                children: [
+                                    '/en/guide/maven-central-version'
+                                ]
                             }
                         ]
                     }

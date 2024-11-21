@@ -16,6 +16,7 @@
 package io.github.guoshiqiufeng.cloud.stream.binder.redis.properties;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,19 +31,19 @@ public class RedisBinderConfigurationPropertiesTest {
     void testDefaultProperties() {
         RedisProperties redisProperties = new RedisProperties();
         RedisBinderConfigurationProperties properties = new RedisBinderConfigurationProperties(redisProperties);
-        
+
         assertEquals("localhost", properties.getConfiguration().getHost());
         assertEquals(6379, properties.getConfiguration().getPort());
     }
 
-    @Test 
+    @Test
     void testCustomProperties() {
         RedisProperties redisProperties = new RedisProperties();
         redisProperties.setHost("redis.example.com");
         redisProperties.setPort(6380);
-        
+
         RedisBinderConfigurationProperties properties = new RedisBinderConfigurationProperties(redisProperties);
-        
+
         assertEquals("redis.example.com", properties.getConfiguration().getHost());
         assertEquals(6380, properties.getConfiguration().getPort());
     }

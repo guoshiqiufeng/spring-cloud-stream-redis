@@ -16,8 +16,8 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
 
 ### 开发框架
 
-- Spring Cloud Stream 4.1.3
-- Spring Boot
+- Spring Cloud Stream 4
+- Spring Boot 3
 
 ### 功能
 
@@ -39,7 +39,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
         <dependency>
             <groupId>io.github.guoshiqiufeng.cloud</groupId>
             <artifactId>spring-cloud-stream-dependencies</artifactId>
-            <version>0.3.0</version>
+            <version>0.4.0</version>
             <type>import</type>
         </dependency>
     </dependencies>
