@@ -15,7 +15,9 @@
  */
 package io.github.guoshiqiufeng.cloud.stream.binder.redis.utils;
 
+import io.lettuce.core.RedisConnectionException;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -35,8 +37,12 @@ import java.util.Optional;
  * @version 1.0
  * @since 2024/8/28 15:52
  */
+@Slf4j
 @UtilityClass
 public class RedisConnectionFactoryUtil {
+
+    private static final int MAX_RETRY_ATTEMPTS = 3;
+    private static final long RETRY_DELAY_MS = 1000;
 
     /**
      * get the RedisConnectionFactory
@@ -47,21 +53,61 @@ public class RedisConnectionFactoryUtil {
     public RedisConnectionFactory getRedisConnectionFactory(@NonNull RedisProperties redisProperties) {
         Assert.notNull(redisProperties,
                 "'properties' must not be null");
+        // add retry
+        int attempts = 0;
+        Exception lastException = null;
+
+        while (attempts < MAX_RETRY_ATTEMPTS) {
+            try {
+                return createConnectionFactory(redisProperties);
+            } catch (Exception e) {
+                lastException = e;
+                log.warn("Failed to create Redis connection factory, attempt {}/{}",
+                        attempts + 1, MAX_RETRY_ATTEMPTS, e);
+
+                attempts++;
+                if (attempts < MAX_RETRY_ATTEMPTS) {
+                    try {
+                        Thread.sleep(RETRY_DELAY_MS);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        throw new RedisConnectionException("Connection attempt interrupted", ie);
+                    }
+                }
+            }
+        }
+
+        throw new RedisConnectionException("Failed to create Redis connection after " +
+                MAX_RETRY_ATTEMPTS + " attempts", lastException);
+    }
+
+    private RedisConnectionFactory createConnectionFactory(RedisProperties redisProperties) {
         RedisProperties.ClientType clientType = redisProperties.getClientType();
 
-        if (clientType == RedisProperties.ClientType.JEDIS) {
-            // 使用 Jedis 作为 Redis 客户端
-            JedisConnectionFactory jedisConnectionFactory = configureJedisClient(redisProperties);
-            jedisConnectionFactory.start();
-            return jedisConnectionFactory;
-        } else {
-            // 使用 Lettuce 作为 Redis 客户端
-            LettuceConnectionFactory lettuceConnectionFactory = configureLettuceClient(redisProperties);
-            lettuceConnectionFactory.start();
-            return lettuceConnectionFactory;
+        try {
+            if (clientType == RedisProperties.ClientType.JEDIS) {
+                // use jedis client
+                JedisConnectionFactory factory = configureJedisClient(redisProperties);
+                factory.start();
+                validateConnection(factory);
+                return factory;
+            } else {
+                // use lettuce client
+                LettuceConnectionFactory factory = configureLettuceClient(redisProperties);
+                factory.start();
+                validateConnection(factory);
+                return factory;
+            }
+        } catch (Exception e) {
+            throw new RedisConnectionException("Error creating Redis connection factory", e);
         }
     }
 
+    private void validateConnection(RedisConnectionFactory factory) {
+        try (RedisConnection connection = factory.getConnection()) {
+            connection.ping();
+        }
+    }
 
     private JedisConnectionFactory configureJedisClient(RedisProperties redisProperties) {
         JedisClientConfiguration clientConfiguration = JedisClientConfiguration.builder()
