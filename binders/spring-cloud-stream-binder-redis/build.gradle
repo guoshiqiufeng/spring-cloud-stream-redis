@@ -5,6 +5,9 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     annotationProcessor "org.springframework.boot:spring-boot-autoconfigure"
 
+    implementation 'io.lettuce:lettuce-core'
+    implementation 'redis.clients:jedis'
+
     testImplementation 'io.lettuce:lettuce-core'
     testImplementation 'redis.clients:jedis'
     testImplementation "org.springframework.boot:spring-boot-starter-test"

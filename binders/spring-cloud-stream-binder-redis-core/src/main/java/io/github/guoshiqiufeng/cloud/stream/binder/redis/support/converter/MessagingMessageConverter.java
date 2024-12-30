@@ -15,7 +15,7 @@
  */
 package io.github.guoshiqiufeng.cloud.stream.binder.redis.support.converter;
 
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
