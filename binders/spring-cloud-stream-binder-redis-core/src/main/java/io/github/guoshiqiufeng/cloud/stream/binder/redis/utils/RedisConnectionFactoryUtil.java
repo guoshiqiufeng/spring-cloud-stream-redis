@@ -88,13 +88,13 @@ public class RedisConnectionFactoryUtil {
             if (clientType == RedisProperties.ClientType.JEDIS) {
                 // use jedis client
                 JedisConnectionFactory factory = configureJedisClient(redisProperties);
-                factory.start();
+                factory.afterPropertiesSet();
                 validateConnection(factory);
                 return factory;
             } else {
                 // use lettuce client
                 LettuceConnectionFactory factory = configureLettuceClient(redisProperties);
-                factory.start();
+                factory.afterPropertiesSet();
                 validateConnection(factory);
                 return factory;
             }
