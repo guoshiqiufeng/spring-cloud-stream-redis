@@ -54,6 +54,31 @@ spring:
 
 默认与 使用`lettuce`客户端，如需切换 jedis 客户端，可以添加 jedis 依赖 即可，配置参数与 spring-boot-starter-data-redis 一致。
 
+- jedis依赖
+<CodeGroup>
+  <CodeGroupItem title="Maven" active>
+
+```xml:no-line-numbers:no-v-pre
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+</dependency>
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Gradle">
+
+```groovy:no-line-numbers:no-v-pre
+dependencies {
+    implementation platform("redis.clients:jedis")
+}
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+- 配置
 ```yaml:no-line-numbers
 spring:
   cloud:

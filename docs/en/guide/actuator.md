@@ -42,7 +42,10 @@ Example:
                 "redis": {
                     "status": "UP",
                     "details": {
-                        "version": "7.1.2"
+                        "version": "7.1.2",
+                        "pool.maxTotal": 8,
+                        "pool.maxIdle": 8,
+                        "pool.minIdle": 0
                     }
                 }
             }

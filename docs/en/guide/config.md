@@ -55,6 +55,31 @@ spring:
 The default is to use the `lettuce` client, if you need to switch to the jedis client, you can add a jedis dependency to
 do so, with the same configuration parameters as spring-boot-starter-data-redis.
 
+- jedis dependencies
+  <CodeGroup>
+  <CodeGroupItem title="Maven" active>
+
+```xml:no-line-numbers:no-v-pre
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+</dependency>
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Gradle">
+
+```groovy:no-line-numbers:no-v-pre
+dependencies {
+    implementation platform("redis.clients:jedis")
+}
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+- configuration
 ```yaml:no-line-numbers
 spring:
   cloud:
