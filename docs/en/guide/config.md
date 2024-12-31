@@ -56,7 +56,8 @@ The default is to use the `lettuce` client, if you need to switch to the jedis c
 do so, with the same configuration parameters as spring-boot-starter-data-redis.
 
 - jedis dependencies
-  <CodeGroup>
+  
+<CodeGroup>
   <CodeGroupItem title="Maven" active>
 
 ```xml:no-line-numbers:no-v-pre
