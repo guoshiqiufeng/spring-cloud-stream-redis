@@ -110,3 +110,4 @@ spring:
 
 ```
 
+一般的简单工程，通过以上配置即可正常使用，具体可参考以下项目： [spring-cloud-stream-redis-samples](https://github.com/guoshiqiufeng/spring-cloud-stream-redis-samples)
