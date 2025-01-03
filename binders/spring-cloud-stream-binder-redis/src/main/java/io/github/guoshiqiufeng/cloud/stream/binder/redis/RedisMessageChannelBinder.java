@@ -159,9 +159,10 @@ public class RedisMessageChannelBinder extends
                 redisInboundChannelAdapter.setTopics(destination.getName());
             }
             redisInboundChannelAdapter.setBeanName(extendedConsumerProperties.getBindingName());
-            if (consumerProperties != null && consumerProperties.getSerializer() != null) {
-                redisInboundChannelAdapter.setSerializer(consumerProperties.getSerializer());
-            }
+//            if (consumerProperties != null && consumerProperties.getSerializer() != null) {
+//                redisInboundChannelAdapter.setSerializer(consumerProperties.getSerializer());
+//            }
+            redisInboundChannelAdapter.setSerializer(null);
             redisInboundChannelAdapter.setMessageConverter(new MessagingMessageConverter());
             redisInboundChannelAdapter.setBeanFactory(getBeanFactory());
             redisInboundChannelAdapter.setApplicationContext(applicationContext);
