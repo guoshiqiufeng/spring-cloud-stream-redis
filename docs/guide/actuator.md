@@ -10,7 +10,7 @@ description:
 
 ## 开启配置
 
-```yaml:no-line-numbers
+```yaml
 management:
   endpoints:
     web:

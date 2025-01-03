@@ -19,9 +19,12 @@ just need some simple configuration！
 >
 > Support all configurations under `spring.data.redis`
 
-```yaml:no-line-numbers
+```yaml
 spring:
   cloud:
+    function:
+#      definition: send;test
+      definition: send
     stream:
       default-binder: redis
       binders:
@@ -71,7 +74,7 @@ do so, with the same configuration parameters as spring-boot-starter-data-redis.
 
   <CodeGroupItem title="Gradle">
 
-```groovy:no-line-numbers:no-v-pre
+```groovy
 dependencies {
     implementation platform("redis.clients:jedis")
 }
@@ -81,9 +84,12 @@ dependencies {
 </CodeGroup>
 
 - configuration
-```yaml:no-line-numbers
+```yaml
 spring:
   cloud:
+    function:
+#      definition: send;test
+      definition: send
     stream:
       default-binder: redis
       binders:

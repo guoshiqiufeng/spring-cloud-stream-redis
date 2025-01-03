@@ -57,6 +57,7 @@ implementation group: 'io.github.guoshiqiufeng.cloud', name: 'spring-cloud-start
 spring:
   cloud:
     function:
+      #      definition: send;test
       definition: send
     stream:
       default-binder: redis
