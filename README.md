@@ -63,6 +63,8 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/en/
 ```yaml
 spring:
   cloud:
+    function:
+      definition: send;recall
     stream:
       default-binder: redis
       binders:
