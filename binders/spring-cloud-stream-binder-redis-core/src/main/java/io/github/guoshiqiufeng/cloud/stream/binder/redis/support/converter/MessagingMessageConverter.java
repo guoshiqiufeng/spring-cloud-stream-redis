@@ -41,7 +41,7 @@ public class MessagingMessageConverter implements MessageConverter {
         if (this.messagingConverter != null) {
             Message<?> converted = this.messagingConverter.toMessage(message.getPayload(), message.getHeaders());
             if (converted != null) {
-                return converted;
+                message = converted;
             }
         }
 
