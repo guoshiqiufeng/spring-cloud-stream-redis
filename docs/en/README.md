@@ -8,7 +8,7 @@ actions:
     link: /en/guide/getting-started.html
     type: primary
   - text: Project Introduction
-    link: /guide/index.html
+    link: /en/guide/introduction.html
     type: secondary
 features:
   - title: Standardize

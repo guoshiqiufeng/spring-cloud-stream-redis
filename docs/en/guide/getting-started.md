@@ -56,6 +56,9 @@ Add the configuration to application.yml:
 ```yaml
 spring:
   cloud:
+    function:
+      #      definition: send;test
+      definition: send
     stream:
       default-binder: redis
       binders:

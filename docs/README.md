@@ -8,7 +8,7 @@ actions:
     link: /guide/getting-started.html
     type: primary
   - text: 项目简介
-    link: /guide/index.html
+    link: /guide/introduction.html
     type: secondary
 features:
   - title: 统一规范

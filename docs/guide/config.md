@@ -19,9 +19,12 @@ description:
 > 支持`spring.data.redis`下的所有配置
 >
 
-```yaml:no-line-numbers
+```yaml
 spring:
   cloud:
+    function:
+#      definition: send;test
+      definition: send
     stream:
       default-binder: redis
       binders:
@@ -43,7 +46,7 @@ spring:
         out-0:
           destination: test-topic
           content-type: text/plain
-          group: push-producer-group
+          group: test-producer-group
         send-in-0:
           destination: test-topic
           content-type: text/plain
@@ -80,9 +83,12 @@ dependencies {
 </CodeGroup>
 
 - 配置
-```yaml:no-line-numbers
+```yaml
 spring:
   cloud:
+    function:
+#      definition: send;test
+      definition: send
     stream:
       default-binder: redis
       binders:

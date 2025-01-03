@@ -10,7 +10,7 @@ description: Actuator
 
 ## Enable configuration
 
-```yaml:no-line-numbers
+```yaml
 management:
   endpoints:
     web:
