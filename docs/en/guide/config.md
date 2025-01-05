@@ -111,3 +111,4 @@ spring:
 
 ```
 
+ A simple project with the above configuration will work fine, see the following project: [spring-cloud-stream-redis-samples](https://github.com/guoshiqiufeng/spring-cloud-stream-redis-samples)

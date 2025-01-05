@@ -156,7 +156,7 @@ public class TestController {
 
 }
 ```
-
+完整的代码示例 查看 [spring-cloud-stream-redis-samples](https://github.com/guoshiqiufeng/spring-cloud-stream-redis-samples)
 ## 小结
 
 通过以上几个简单的步骤，我们就实现了 MessageVO 的发送和消费。

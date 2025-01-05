@@ -39,7 +39,7 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
         <dependency>
             <groupId>io.github.guoshiqiufeng.cloud</groupId>
             <artifactId>spring-cloud-stream-dependencies</artifactId>
-            <version>0.5.0</version>
+            <version>0.5.2</version>
             <type>import</type>
         </dependency>
     </dependencies>
@@ -61,6 +61,8 @@ https://guoshiqiufeng.github.io/spring-cloud-stream-redis/
 ```yaml
 spring:
   cloud:
+    function:
+      definition: send;recall
     stream:
       default-binder: redis
       binders:
@@ -129,3 +131,5 @@ public class MessageHandler implements Consumer<Message<String>> {
 ```
 
 更多使用参考查看[文档](https://guoshiqiufeng.github.io/spring-cloud-stream-redis/zh/)
+
+更多示例 查看 [spring-cloud-stream-redis-samples](https://github.com/guoshiqiufeng/spring-cloud-stream-redis-samples)

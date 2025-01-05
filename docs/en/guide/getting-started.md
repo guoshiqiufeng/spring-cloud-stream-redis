@@ -157,6 +157,8 @@ public class TestController {
 }
 ```
 
+Full code example View [spring-cloud-stream-redis-samples](https://github.com/guoshiqiufeng/spring-cloud-stream-redis-samples)
+
 ## Wrap-up
 
 With these few simple steps, we have implemented the sending and consuming of MessageVO.
