@@ -4,7 +4,7 @@ ext {
     ]
 
     libraries = [
-            springBoot3Version = '3.4.0',
+            springBoot3Version = '3.4.1',
             springCloudStreamVersion = '4.2.0'
     ]
 
